@@ -1,0 +1,188 @@
+.nav{
+  //bg verde -> #84a151;
+  // shadow     #73a811af;
+  // background: linear-gradient(to right,hsl(0, 0%, 100%), hsla(0, 0%, 100%, 0.973));
+  background:var(--color-i);
+  box-shadow:  .1px .1px 100px #0000009d;
+  // border-bottom: 1px solid #000;
+  height: 50px;
+  color: rgb(0, 0, 0);
+  position: fixed;
+  z-index: 50;
+  width: 100%;
+
+  .nav__container{
+      display: flex;
+      height: 100%;
+      width: 90%;
+      margin: auto;
+      justify-content:space-between;
+      align-items: center;
+
+      .nav__logo{
+          color: var(--color-text);
+          opacity: .5;
+          font-size: 2.6rem;
+          font-weight:lighter;
+          font-family:'Luxurious Script', 'Segoe UI', Arial, Helvetica, sans-serif;
+          &::selection{
+              background: transparent;
+          }
+          &:hover{
+              cursor: context-menu;
+          }
+      }
+  }
+
+      
+}
+
+// IMPORTAMOS EL MENU HAMBURGESA 
+// @import './libs/menuAndDark';
+
+body.darkmode .nav .nav__container .nav__logo{
+  color:var(--color-i);
+  opacity: 1;
+}
+
+
+.nav__menu{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //tenia un gridddd
+  // grid-auto-flow: column;
+  gap: 2em;
+  color: #000;
+}
+// #actual-item{
+//     text-shadow: rgba(0, 0, 0, 0) 0px 0px 5px, rgba(0, 0, 0, 0.555) 0px 0px 10px, rgba(0, 0, 0, 0.623) 0px 0px 15px, #0b135e 0px 0px 20px /*, #1a3e44 0px 0px 30px, #0c0a63 0px 0px 40px, #330b3d 0px 0px 50px, #062930 0px 0px 75px*/;
+//     }
+.nav__item{
+      font-size:15.5px ;
+      font-weight: 600;
+      opacity: .65;
+      color:var(--color-text);
+      text-decoration: none;
+      text-align: center;
+      --clippy: polygon(0 0, 0 0, 0 100%, 0% 100%);
+      
+}
+
+
+
+
+/*EFeCTO///////////////////////////////////*/
+.nav__item::after{
+ content: "";
+ display: block;
+background-color: #0000007e;
+width: 100%;
+margin-top: 3px;
+height: 1.5px;
+clip-path: var(--clippy);
+transition: clip-path .06s ;
+}
+
+.nav__item:hover{
+ --clippy: polygon(0 0, 100% 0, 100% 100%, 0 100%)
+}   
+.nav__item#actual-item:hover{
+ --clippy: polygon(0 0, 0 0, 0 50%, 0% 50%);
+
+}
+
+
+
+/*!MEDIA QUERIES*/
+@media (max-width: 720px) {
+
+  .nav__menu {
+      position: fixed;
+      top: 50px;
+      min-height: 100vh;
+      width: 85vw;
+      left: 15%;
+      // right: 0;
+      // bottom: 0;
+      background:#e4e4e4;
+      backdrop-filter: blur(6px);
+
+  
+
+      justify-content: center;
+      flex-direction: column;
+      align-items: stretch;
+      // padding: 0 0 10vh 2em;
+      padding: 1em 20%;
+      transition: clip-path .2s ease-in-out;
+
+          clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+          box-shadow: -5 -5 10px #000;
+
+
+              .nav__item{
+
+              text-align: left;
+              margin: 0;
+              font-weight: 500;
+              font-size: 1.1em;
+              border-radius: .2em;
+
+              &:hover{
+              --clippy: polygon(0 0, 0 0, 0 100%, 0% 100%);
+              }   
+  }
+          
+
+  }
+
+  .cbdark{
+      display: flex;
+      justify-content:start;
+      // grid-area: dark;
+     
+  }
+
+
+
+
+  /*!DARK MODE ESTILS*/
+  body.darkmode .nav__menu {
+      background: #1a2430;
+
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
+
+
+
+  }
+}
+
+body.darkmode .nav__item {
+  color: rgb(233, 233, 233);
+  color: var(--color-i);
+  // font-weight: 400;
+  opacity: 1;
+}
+
+
+
+.despliege {
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%);
+
+}
+
+
+body.darkmode .nav__item::after {
+  background: rgba(255, 255, 255, 0.473);
+}
+
+body.darkmode .nav{
+  background: #21303d;
+  border: none;
+  border-bottom: 1px solid #101a24;
+  box-shadow:  .1px .1px 100px #ffffff4b;
+
+}
+
