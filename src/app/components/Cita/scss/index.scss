@@ -1,0 +1,105 @@
+
+.containerCita {
+  width: 590px;
+  margin:0 auto;
+  margin-top: 60px;
+  top: -50px;
+  position: relative;
+  // transform: scale(0.6);
+
+  @media (max-width:800px){
+      text-align: left;
+      // margin-top: -100px;
+      min-height: min-content;
+      width: 100%;
+      margin:auto;
+      margin-top:30px;
+      margin-bottom: 20px;
+      top: -0px;
+      position:relative;
+      transform: scale(0.8);
+  }
+
+}
+
+blockquote {
+  width: 100%;
+  // font: 2.65em CallunaRegular;
+  font-size: 2em;
+  letter-spacing: .065em;
+  // float: left;
+  // padding: 0px 0 10px 15px;
+  margin: 0;
+  color: var(--text);
+  text-align: center;
+  // border-top: 2px dotted #858585;
+  // border-bottom: 2px dotted #858585;
+  // transform: rotate(-5deg);
+  
+  /* -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg); */
+}
+
+.container:before {
+  content: "“";
+  font-size: 7em;
+  position: relative;
+  left: -10px;
+  color:var(--text);
+}
+
+.container:after {
+  content: "”";
+  font-size: 7em;
+  position: absolute;
+  right: -10px;
+  top: 50px;
+  color: var(--text);
+}
+
+  blockquote:first-line {
+      font: 1em;
+      font-family: 'Encode Sans SC', sans-serif;
+      color: var(--primary);
+  }
+
+  blockquote:first-letter {
+      font-size: 2em;
+      // text-transform: lowercase;
+      // float: left;
+      // line-height: .52em;
+      // margin-right: -18px;
+      // position: relative;
+      z-index: 1;
+      // margin-right: .1px;
+  }
+
+  // blockquote strong:first-child {
+  //     margin-left: 8px;
+  //     letter-spacing: 0;
+  // }
+
+  // blockquote strong:last-child {
+  //     font: 1em "Museo 700";
+  //     text-transform: uppercase;
+  //     letter-spacing: 0;
+  // }
+
+  blockquote em {
+      border-bottom: 2px dotted var(--text);
+    padding-left: 5px;
+  }
+
+  blockquote + b {
+      float: right;
+      margin-top: 10px;
+      font: 1em CallunaRegular;
+      letter-spacing: .15em;
+  }
+
+  blockquote + b:first-letter {
+      color: var(--primary);
+      font-size: 1em;
+      font-style: italic;
+      letter-spacing: .25em;
+  }
