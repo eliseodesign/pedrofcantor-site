@@ -1,0 +1,168 @@
+// Estilos para el icono de menu hamburgesa y el modo oscuro del sitio
+.modal_menu{ // modal al abrir el menu en mobile
+  background:#0005;
+  backdrop-filter: blur(2px);
+  top: 0;
+  min-width:100vw;
+  min-height: 100vh;
+  display: none;
+  position: fixed;
+  z-index: 10;
+  
+}
+.display-block {display: flex;} // estilos para aparecer modal
+
+
+.nav__img { // menu hamburgesa - contenedor de lineas 
+width: 40px;
+height: 50px;
+display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+cursor: pointer;
+-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+.linea-1,// las tres linea del menu ham
+.linea-2,
+.linea-3 {
+  width: 30px;
+  height: 5px;
+
+  border-radius: 10px;
+  background-color: rgb(41, 41, 41);
+  margin: 3px 0px;
+  opacity: .8;
+  transition: transform .06s;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // para que al hacer click no se seleccione como el texto
+
+}
+
+}// change es la clase que se le agregara a nav__img al dar click
+.change{
+.linea-1 {
+  transform: rotate(-45deg) ;
+  position: absolute;
+}
+.linea-2 {
+  transform: translateX(10px);
+  opacity: 0;
+}
+.linea-3 {
+  position: absolute;
+  transform: rotate(45deg);
+}
+}
+
+
+@media (min-width: 720px) { // desaparecer elementos en pantallas grandes
+  .nav__img{ display:none
+  }
+  .display-block {
+      display: none;
+  }
+}
+
+
+// body con clase .darkmode hace que las lineas camien de color
+body.darkmode .linea-1,
+body.darkmode .linea-2,
+body.darkmode .linea-3 {
+  background-color: var(--color-i);
+}
+
+
+
+
+
+
+// ESTILOS PARA MODO OSCURO
+
+// swith para el modo cambiar de modo 
+.bdark {
+width: 50px;
+height: 15px;
+background: rgb(238, 238, 238);
+display: flex;
+position: relative;
+cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 1rem;
+align-items: center;  
+box-shadow: 0 0 1.5px 1px rgba(0, 0, 0, 0.151);
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+
+
+//ciruclo dentro del switch
+&::after{
+  display: block;
+  background: #eee;
+  background-image: url(./sun.svg); // esta url cambiara
+
+  background-size: 90%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  right: unset;
+  border-radius: 50%;
+
+  transition: translateX, .15s ease-in-out;
+  box-shadow: 0 0 1.5px 1.5px rgba(0, 0, 0, .2);
+  content: '';
+    &::selection{
+      background: none;
+    }
+}
+
+// cuando tenga ademas la clase .active 
+&.active{
+  background: #999;
+
+  &::after{
+      background:#999;
+      background-image: url(./moon.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: translateX(100%) rotate(-80deg);
+
+        &::selection{
+          background: none;
+        }
+  }
+}
+
+}
+
+
+/*!ESTILOS NOCHE Y DIA*/
+body{
+  background-color: #eee;
+  color: #222;
+  padding: 0;
+}
+
+body.darkmode{
+  background:#0d131a;
+  color:#bbb;
+}
+
+main{
+background-color:#eee;
+}
+body.darkmode main{
+background: #0d131a
+}
+
+
+
+
+
+

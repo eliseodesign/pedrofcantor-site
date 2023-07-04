@@ -1,10 +1,8 @@
+@use "./Hamburger.scss";
+
 .nav{
-  //bg verde -> #84a151;
-  // shadow     #73a811af;
-  // background: linear-gradient(to right,hsl(0, 0%, 100%), hsla(0, 0%, 100%, 0.973));
-  background:var(--color-i);
+  background:var(--primary);
   box-shadow:  .1px .1px 100px #0000009d;
-  // border-bottom: 1px solid #000;
   height: 50px;
   color: rgb(0, 0, 0);
   position: fixed;
@@ -21,10 +19,8 @@
 
       .nav__logo{
           color: var(--color-text);
-          opacity: .5;
           font-size: 2.6rem;
-          font-weight:lighter;
-          font-family:'Luxurious Script', 'Segoe UI', Arial, Helvetica, sans-serif;
+          opacity: .5;
           &::selection{
               background: transparent;
           }
@@ -53,20 +49,19 @@ body.darkmode .nav .nav__container .nav__logo{
   //tenia un gridddd
   // grid-auto-flow: column;
   gap: 2em;
-  color: #000;
+  color: var(--text);
 }
 // #actual-item{
 //     text-shadow: rgba(0, 0, 0, 0) 0px 0px 5px, rgba(0, 0, 0, 0.555) 0px 0px 10px, rgba(0, 0, 0, 0.623) 0px 0px 15px, #0b135e 0px 0px 20px /*, #1a3e44 0px 0px 30px, #0c0a63 0px 0px 40px, #330b3d 0px 0px 50px, #062930 0px 0px 75px*/;
 //     }
 .nav__item{
-      font-size:15.5px ;
-      font-weight: 600;
-      opacity: .65;
-      color:var(--color-text);
-      text-decoration: none;
-      text-align: center;
-      --clippy: polygon(0 0, 0 0, 0 100%, 0% 100%);
-      
+  font-size:15.5px ;
+  font-weight: 600;
+  opacity: .65;
+  color:var(--color-text);
+  text-decoration: none;
+  text-align: center;
+  --clippy: polygon(0 0, 0 0, 0 100%, 0% 100%);
 }
 
 
