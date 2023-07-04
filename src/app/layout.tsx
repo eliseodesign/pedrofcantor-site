@@ -1,15 +1,17 @@
+interface Childs {
+  children: React.ReactNode
+}
+
+// globals styles
 import '@/styles/globals.scss'
 import '@/styles/variables.scss'
-import { Inter } from 'next/font/google'
+// componets layout
 import NavBar from '@/shared/components/NavBar'
-
+//fonts
+import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+function RootLayout({children}: Childs) {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -19,3 +21,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+export default RootLayout;

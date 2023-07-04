@@ -1,5 +1,14 @@
+// variables
 :root {
   --bg: #eee;
   --primary:#99b36e;
-  --text:#000;
+  --text:#333;
+}
+
+// variables for darkmode
+body {
+	&.darkmode {
+		--bg: #000;
+		--text: #eee;
+	}
 }
