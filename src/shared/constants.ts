@@ -3,7 +3,7 @@ interface Constants {
   readonly NOMBRE: string;
   readonly EMAIL: string;
   readonly CODIGO: string;
-  readonly DIRECCION: string;
+  readonly DIRECCION: string[];
   readonly DESAROLLADOR: string;
   readonly FB: string[];
   readonly TEL: string;
@@ -25,10 +25,10 @@ export const inmutableConstants: Constants = {
   NOMBRE: "Complejo Educativo \"Pedro  F. Cantor\"",
   EMAIL: "@cantor10635yahoo.com",
   CODIGO:"10635",
-  DIRECCION:"Calle Unión #6, Bo. Santa Cruz, Izalco",
+  DIRECCION:["Calle Unión #6, Bo. Santa Cruz, Izalco", "https://goo.gl/maps/ect4y4AfEHLaQ78N7"],
   DESAROLLADOR:"Eliseo Arévalo ",
-  FB:["@100cantor","https://"],
-  TEL:"2453-5101"
+  FB:["@100cantor","https://web.facebook.com/100Cantor"],
+  TEL:"24535101"
 };
 
 /**
