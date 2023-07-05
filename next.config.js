@@ -1,9 +1,18 @@
 /** @type {import('next').NextConfig} */
-const path = require('path')
-const nextConfig = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
-}
+const withMarkdoc = require('@markdoc/next.js');
 
-module.exports = nextConfig
+const path = require('path')
+
+const markdocConfig = {
+  mode: 'static',
+  schemaPath:"./src/pages"
+}
+module.exports = withMarkdoc(markdocConfig)(
+  {
+    sassOptions: {
+      includePaths: [path.join(__dirname, 'styles')],
+    },
+    pageExtensions: ['md', 'mdoc', 'js', 'jsx', 'ts', 'tsx']
+  }
+);
+

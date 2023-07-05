@@ -6,7 +6,7 @@ function Cita() {
         <strong>El principio</strong>
         <em> de la</em>
         <br />
-          <em>sabiduría</em>
+          <em>sabiduría </em>
           es el temor a
           <strong> Dios</strong>
       </blockquote>
