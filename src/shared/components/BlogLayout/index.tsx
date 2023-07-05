@@ -5,18 +5,20 @@ interface Childs {
 // globals styles
 import '@/styles/globals.scss'
 import '@/styles/variables.scss'
+import './scss/index.scss'
 // componets layout
-import NavBar from '@/shared/components/NavBar'
+
 //fonts
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 function BlogLayout({ children }: Childs) {
   return (
-    <div lang="en" className={inter.className}>
-      <NavBar />
-      {children}
-    </div>
+    <section lang="en" className={inter.className}>
+      <div className='blog-layout'>
+        {children}
+      </div>
+    </section>
   )
 }
 
