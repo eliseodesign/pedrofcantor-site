@@ -1,4 +1,5 @@
 import sqlite3 from "sqlite3";
+import { tables } from './tables'
 
 const DBNAME = "db.sqlite"
 const db = new sqlite3.Database(DBNAME, (err)=>{
@@ -7,13 +8,9 @@ const db = new sqlite3.Database(DBNAME, (err)=>{
     throw err;
   }
   console.log("CONNECTED TO DB")
-  db.run(`
-  CREATE TABLE Admin(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    password TEXT NOT NULL,
-    username TEXT NOT NULL
-  );
-  `)
-
+  // create tables
+  tables.forEach((table)=>{
+    db.run(table)
+  })
 })
 export default db;
