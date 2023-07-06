@@ -12,7 +12,7 @@ export async function POST(req:Request, res:Response) {
     if(VerifySuperAdmin(superAdmin) === false){
       return NextResponse.json({error:"Inautorizado"})
     }
-    
+    // TODO: Crear Admin
     return NextResponse.json({ success: `admin` })
   } catch (error) {
     return NextResponse.json({error})
