@@ -1,0 +1,24 @@
+/* Header */
+header {
+  width: 100%;
+  height: auto;
+  background: var(--text);
+  background: -webkit-linear-gradient(to bottom, hsla(0, 0%, 0%, 0.863), hsla(0, 0%, 0%, 0.342)), url(/img/banner.jpg);
+  background: linear-gradient(to right, hsla(0, 0%, 0%, 0.859), hsla(0, 0%, 0%, 0.512)), url(/img/banner.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 720px) {
+  header {
+    background: -webkit-linear-gradient(to bottom, hsla(0, 0%, 0%, 0.863), hsla(0, 0%, 0%, 0.342)), url(/img/banner.jpg);
+    background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.359), hsla(0, 0%, 0%, 0.877)), url(/img/banner.jpg);
+    background-size: cover;
+    background-attachment: local;
+    background-position: top;
+    overflow: hidden;
+    margin-bottom: -50px;
+  }
+}
