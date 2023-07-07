@@ -1,4 +1,9 @@
-import { RunResult, Database } from "sqlite3";
+import { Database } from "sqlite3";
+
+interface Params {
+  sql:string,
+  params: (string | number)[]
+}
 
 class DatabaseHelper {
   private db: Database;
@@ -7,25 +12,27 @@ class DatabaseHelper {
     this.db = db;
   }
 
-  executeQuery(sql: string, params: (string | number)[] = []): Promise<RunResult> {
-    return new Promise<RunResult>((resolve, reject) => {
+  executeQuery<T>(data: Params): Promise<T[]> {
+
+    const {sql, params } = data
+
+    return new Promise<T[]>((res, rej) => {
+      this.db.all(sql, params, (err, rows)=>
+        err
+        ? rej(err)
+        : res(rows as T[])
+      )
+    });
+  }
+
+  executeNonQuery(data: Params): Promise<void> {
+    const { sql, params } = data
+    return new Promise<void>((resolve, reject) => {
       this.db.run(sql, params, function (err) {
         if (err) {
           reject(err);
         } else {
-          resolve(this);
-        }
-      });
-    });
-  }
-
-  executeQueryAll(sql: string, params: (string | number)[] = []): Promise<any[]> {
-    return new Promise<any[]>((resolve, reject) => {
-      this.db.all(sql, params, function (err, rows) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
+          resolve();
         }
       });
     });
