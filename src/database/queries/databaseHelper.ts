@@ -2,7 +2,7 @@ import { Database } from "sqlite3";
 
 interface Params {
   sql:string,
-  params: (string | number)[]
+  params: (string | number | boolean)[]
 }
 
 class DatabaseHelper {

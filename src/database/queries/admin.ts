@@ -25,9 +25,10 @@ export class AdminQueries implements Querie {
   }
 
   async insert(user: Admin): Promise<{ success: string }> {
-    const sql = 'INSERT INTO Admin (username, password) VALUES (?,?)';
-    const params = [user.username, user.password];
-
+    const sql = 'INSERT INTO Admin (username, password, enable) VALUES (?,?,?)';
+    const params = [user.username, user.password, user.enable];
+    console.log(params)
+    
     await this.dbHelper.executeNonQuery({sql, params});
     return { success: "admin create" };
   }
