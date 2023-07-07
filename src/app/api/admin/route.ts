@@ -1,18 +1,25 @@
 import { NextResponse } from 'next/server'
-import { User} from '@/shared/interfaces'
 import { VerifySuperAdmin } from '../handlers'
 
+import { Admin } from './admin'
+import { AdminService } from './adminService'
+import { AdminQueries } from '@/database/queries/admin'
+
+const service = new AdminService(new AdminQueries());
+
+// POST
 export async function POST(req:Request, res:Response) {
   try {
-    // const user:User = await req.json()
     const data = await req.json()
-    const admin: User = data.admin
-    const superAdmin: User = data.superAdmin
+    const admin: Admin = data.admin
+    const superAdmin: Admin = data.superAdmin
 
     if(VerifySuperAdmin(superAdmin) === false){
       return NextResponse.json({error:"Inautorizado"})
     }
-    // TODO: Crear Admin
+    
+    service.create(admin)
+
     return NextResponse.json({ success: `admin` })
   } catch (error) {
     return NextResponse.json({error})
