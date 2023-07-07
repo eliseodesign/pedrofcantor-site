@@ -9,50 +9,34 @@ export class AdminQueries implements Querie {
     this.dbHelper = new DatabaseHelper(db);
   }
 
-  async selectOne(id: number){
+  async selectOne(id: number): Promise<Admin | undefined> {
     const sql = 'SELECT * FROM Admin WHERE id = ?';
     const params = [id];
 
-    try {
-      const row = await this.dbHelper.executeQuery(sql, params);
-      return row;
-    } catch (error) {
-      throw error;
-    }
+    const row = await this.dbHelper.executeQuery<Admin>({sql, params});
+    return row[0];
   }
-  
-  async selectAll() {
+
+  async selectAll(): Promise<Admin[]> {
     const sql = 'SELECT * FROM Admin';
-  
-    try {
-      const rows = await this.dbHelper.executeQueryAll(sql, []);
-      return rows;
-    } catch (error) {
-      throw error;
-    }
+
+    const rows = await this.dbHelper.executeQuery<Admin>({sql, params:[]});
+    return rows;
   }
-  
-  async insert(user: Admin) {
+
+  async insert(user: Admin): Promise<{ success: string }> {
     const sql = 'INSERT INTO Admin (username, password) VALUES (?,?)';
     const params = [user.username, user.password];
 
-    try {
-      await this.dbHelper.executeQuery(sql, params);
-      return { success: "admin create" };
-    } catch (error) {
-      throw error;
-    }
+    await this.dbHelper.executeNonQuery({sql, params});
+    return { success: "admin create" };
   }
-  
-  async delete(id:number) {
-    const sql = 'DELETE FROM Admin WHERE id = ?'
-    const params = [id]
 
-    try {
-      await this.dbHelper.executeQuery(sql, params);
-      return { success: "admin deleted" };
-    } catch (error) {
-      throw error;
-    }
+  async delete(id: number): Promise<{ success: string }> {
+    const sql = 'DELETE FROM Admin WHERE id = ?';
+    const params = [id];
+
+    await this.dbHelper.executeNonQuery({sql, params});
+    return { success: "admin deleted" };
   }
 }
