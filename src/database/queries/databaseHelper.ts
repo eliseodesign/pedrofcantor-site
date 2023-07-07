@@ -7,7 +7,7 @@ class DatabaseHelper {
     this.db = db;
   }
 
-  executeQuery(sql: string, params: any[] = []): Promise<RunResult> {
+  executeQuery(sql: string, params: (string | number)[] = []): Promise<RunResult> {
     return new Promise<RunResult>((resolve, reject) => {
       this.db.run(sql, params, function (err) {
         if (err) {
@@ -19,7 +19,7 @@ class DatabaseHelper {
     });
   }
 
-  executeQueryAll(sql: string, params: any[] = []): Promise<any[]> {
+  executeQueryAll(sql: string, params: (string | number)[] = []): Promise<any[]> {
     return new Promise<any[]>((resolve, reject) => {
       this.db.all(sql, params, function (err, rows) {
         if (err) {
