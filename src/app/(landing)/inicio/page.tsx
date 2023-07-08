@@ -1,5 +1,5 @@
 import { getSEO } from '@/shared/seoData'
-import { Header, Cita} from '@/app/components/'
+import { Header, Cita} from '@/app/(landing)/inicio/components'
 import { AdminQueries } from '@/database/queries/admin'
 
 export const metadata = getSEO("INICIO")
