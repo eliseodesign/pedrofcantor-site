@@ -36,7 +36,7 @@ export const inmutableConstants: Constants = {
 */
 export const routesContstants: RoutesConstants = {
   INICIO: [
-      ["/", "Inicio"]
+      ["/inicio", "Inicio"]
   ],
   SOBRE_NOSOTROS: [
       ["/sobre-nosotros", "Sobre Nosotros"]
