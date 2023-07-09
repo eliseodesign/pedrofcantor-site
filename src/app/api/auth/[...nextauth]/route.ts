@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+import NextAuth from 'next-auth'
 import CredencialProvider from 'next-auth/providers/credentials'
 import { AdminQueries } from '@/database/queries/admin'
 
@@ -6,10 +6,10 @@ const adminQueries = new AdminQueries()
 const handler = NextAuth({
   providers:[
     CredencialProvider({
-      name:"credentials",
+      name:'credentials',
       credentials:{
-        username: {label: "username", type: "text", placeholder:"Usuario"},
-        password: {label: "password", type: "password", placeholder:"Contraseña"}
+        username: {label: 'username', type: 'text', placeholder:'Usuario'},
+        password: {label: 'password', type: 'password', placeholder:'Contraseña'}
       },
       async authorize(credentials, req){
 
@@ -36,6 +36,9 @@ const handler = NextAuth({
       session.user = token.user as any
       return session
     }
+  },
+  pages:{
+    signIn: '/login',
   }
 })
 
