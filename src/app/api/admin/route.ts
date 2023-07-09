@@ -52,21 +52,3 @@ export async function DELETE(req:Request, res:Response) {
     return ResponseProvider(400, String(error), null)
   }
 }
-
-export async function GET(req:Request, res:Response){
-  try {
-    // const data = await req.json()
-    // const superAdmin: Admin = data.superAdmin
-
-    // if(VerifySuperAdmin(superAdmin) === false){
-    //   return ResponseProvider(401, "Inautorizado", null)
-    // }
-
-    const data = await service.getAll()
-  
-    return ResponseProvider<Admin[]>(200, "Admin Create", data)
-
-  } catch (error) {
-    return ResponseProvider(400, String(error), null)
-  }
-}
