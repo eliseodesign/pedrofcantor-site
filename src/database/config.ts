@@ -8,9 +8,19 @@ const db = new sqlite3.Database(DBNAME, (err)=>{
     throw err;
   }
   console.log("CONNECTED TO DB")
-  // create tables
-  tables.forEach((table)=>{
-    db.run(table)
-  })
-})
+  // Verificar si las tablas existen antes de crearlas
+  db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='Admin'", (err, row) => {
+    if (err) {
+      console.error(err.message);
+      throw err;
+    }
+    if (!row) {
+      // La tabla no existe, crearla
+      tables.forEach((table)=>{
+        db.run(table)
+      })
+    }
+  });
+});
+
 export default db;
