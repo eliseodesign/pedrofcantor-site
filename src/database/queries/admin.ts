@@ -9,9 +9,9 @@ export class AdminQueries implements Querie {
     this.dbHelper = new DatabaseHelper(db);
   }
 
-  async selectOne(id: number): Promise<Admin | undefined> {
-    const sql = 'SELECT * FROM Admin WHERE id = ?';
-    const params = [id];
+  async selectOne(username: string): Promise<Admin | undefined> {
+    const sql = 'SELECT * FROM Admin WHERE username = ?';
+    const params = [username];
 
     const row = await this.dbHelper.executeQuery<Admin>({sql, params});
     return row[0];
