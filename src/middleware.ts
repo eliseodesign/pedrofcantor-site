@@ -25,6 +25,9 @@ export const middleware = async (req: NextRequest) => {
       return NextResponse.redirect(new URL('/api/auth/signin', req.url));
     }
     
+    if(roleName === 'super-admin'){
+      return NextResponse.rewrite(new URL('/super-admin', req.url));
+    }
   }
   return;
 }
