@@ -15,7 +15,10 @@ const handler = NextAuth({
         if(credentials === undefined) throw new Error('Credenciales no proporcionadas')
 
         const admin = await prisma.user.findUnique({
-          where: { username:credentials.username }
+          where: { username:credentials.username },
+          include: {
+            role : true
+          }
         })
 
         if(
