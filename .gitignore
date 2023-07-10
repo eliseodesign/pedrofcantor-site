@@ -36,5 +36,6 @@ next-env.d.ts
 
 .sqlite
 db.sqlite
+.db
 
 .env*.local
