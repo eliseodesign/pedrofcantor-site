@@ -1,8 +1,7 @@
 import NextAuth from 'next-auth'
 import CredencialProvider from 'next-auth/providers/credentials'
-import { AdminQueries } from '@/database/queries/admin'
+import { prisma } from '@/lib/prisma'
 
-const adminQueries = new AdminQueries()
 const handler = NextAuth({
   providers:[
     CredencialProvider({
@@ -15,15 +14,16 @@ const handler = NextAuth({
 
         if(credentials === undefined) throw new Error('Credenciales no proporcionadas')
 
-        const admin:any = await adminQueries.selectOne(String(credentials.username)) 
+        const admin = await prisma.user.findUnique({
+          where: { username:credentials.username }
+        })
 
         if(
-          admin === undefined ||
-          admin.password !== credentials.password
+          !admin ||
+          admin.password != credentials.password
           ) throw new Error('Credenciales invalidas')
-        
-
-        return admin
+      
+        return admin as any
       },
     })
   ],
