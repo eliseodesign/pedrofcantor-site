@@ -1,7 +1,6 @@
-import { ResponseProvider } from '@/app/api/handlers'
+import { handleError, ResponseProvider } from '@/app/api/handlers'
 import { createUser } from '@/app/api/schemas'
 import { AdminService } from '../../services/userService'
-import { ZodError } from 'zod'
 
 const service = new AdminService()
 // POST
@@ -17,12 +16,7 @@ export async function POST(req: Request) {
   
     return ResponseProvider(201, message, data);
   } catch (error) {
-    if (error instanceof ZodError) { //manejar si es un error de tipos
-      const validationErrors = error.issues.map((issue) => issue.message);
-      return ResponseProvider(400, "Error de validación", validationErrors);
-    }
-
-    return ResponseProvider(500, String(error), null);
+    return handleError(error)
   }
 }
 
