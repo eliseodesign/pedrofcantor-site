@@ -37,4 +37,18 @@ export class UserService {
     const admins = users.filter( user => user.role.name === 'admin' )
     return returnProvider(admins, 'usuarios', true)
   }
+
+  async update(data: UserType){
+    const queryUsername = await prisma.user.findUnique({ where: { id: data.id } })
+
+    if(!queryUsername) return returnProvider(null, 'No existe', false)
+    
+    data.roleId = queryUsername.roleId
+    const user = await prisma.user.update({ 
+      where: { id: data.id},
+      data
+     })
+
+    return returnProvider(user, 'usuario actualizado', true)
+  }
 }
