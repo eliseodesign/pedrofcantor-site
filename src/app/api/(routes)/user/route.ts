@@ -19,3 +19,16 @@ export async function POST(req: Request) {
     return handleError(error)
   }
 }
+
+export async function GET(req:Request){
+  try{
+    const users = await service.getAll()
+    const { data, message, success } = users
+
+    if(!success) throw new Error()
+
+    return ResponseProvider(200, message, data)
+  }catch(error){
+    return handleError(error)
+  }
+}

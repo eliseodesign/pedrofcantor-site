@@ -32,6 +32,9 @@ export class UserService {
   }
   
   async getAll(){
+    const users = await prisma.user.findMany({ include: { role: true }})
 
+    const admins = users.filter( user => user.role.name === 'admin' )
+    return returnProvider(admins, 'usuarios', true)
   }
 }
