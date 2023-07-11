@@ -1,15 +1,15 @@
 import path from 'path'
 import { writeFileSync} from 'fs'
-import { Article } from '@/shared/interfaces'
+import { Articulo } from '@/shared/interfaces'
 
-export function createMarkdownFile(article: Article, filename: string) {
+export function createMarkdownFile(article: Articulo, filename: string) {
   const filePath = path.join(process.cwd(), 'src', 'pages', 'blog', filename);
   const markdownContent = `---
-title: ${article.metaData.title}
-description: ${article.metaData.description}
-fecha: ${article.metaData.fecha}
+title: ${article.title}
+description: ${article.description}
+fecha: ${article.date}
 ---
-> ${article.metaData.fecha}
+> ${article.date}
 ${article.content}
   `;
 

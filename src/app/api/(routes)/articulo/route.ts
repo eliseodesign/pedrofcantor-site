@@ -1,16 +1,22 @@
 import { NextResponse } from 'next/server'
-import { Article } from '@/shared/interfaces'
-import { createMarkdownFile} from '@/app/api/handlers/Markdown'
+import { createArticulo } from '@/app/api/schemas'
+import { ArticuloService } from '@/app/api/services/articuloService'
+import { handleError, ResponseProvider } from '@/app/api/handlers'
  
+const service = new ArticuloService()
+
 export async function POST(req:Request, res:Response) {
   try {
+    const requestData = await req.json()
+    createArticulo.parse(requestData)
     
-    const dataJson:Article = await req.json()
-    console.log(dataJson.shortName)
-    
-    createMarkdownFile(dataJson, `${dataJson.shortName}.md`)
-    return NextResponse.json({ success: `articulo '${dataJson.shortName}'` })
+    const result = await service.create(requestData)
+    const { data, message, success } = result
+
+    if(!success) return ResponseProvider(400, message, null); 
+    return ResponseProvider(201, message, data)
+
   } catch (error) {
-    return NextResponse.json({error})
+    return handleError(error)
   }
 }
