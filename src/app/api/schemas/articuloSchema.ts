@@ -1,20 +1,21 @@
 import { z } from 'zod';
 
 const articuloId = z.number().nonnegative();
-const shortname = z.string().min(3);
-const title = z.string();
-const description = z.string().min(6); 
+const shortname = z.string().nonempty().min(3);
+const title = z.string().nonempty();
+const description = z.string().nonempty().min(6); 
 const date = z.date();
+const content = z.string().nonempty()
 
 export const getArticulo = z.object({
   id : articuloId,
 })
 
 export const createArticulo = z.object({
-  shortname: shortname.nonempty(),
-  title: title.nonempty(),
-  description: description.nonempty(),
-  date
+  shortname: shortname,
+  title: title,
+  description: description,
+  content
 }).strict()
 
 export const deleteArticulo = z.object({
@@ -22,10 +23,11 @@ export const deleteArticulo = z.object({
 })
 
 export const updateArticulo = z.object({
-  shortname: shortname.nonempty().optional(),
-  title: title.nonempty().optional(),
-  description: description.nonempty().optional(),
-  date: date.optional()
+  shortname: shortname.optional(),
+  title: title.optional(),
+  description: description.optional(),
+  date: date.optional(),
+  content: content.optional()
 })
 
 const ArticuloSchema = createArticulo.merge(getArticulo)
