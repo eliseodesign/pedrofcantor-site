@@ -1,5 +1,5 @@
 import { handleError, ResponseProvider } from '@/app/api/handlers'
-import { createUser, deleteUser } from '@/app/api/schemas'
+import { createUser } from '@/app/api/schemas'
 import { UserService } from '../../services/userService'
 
 const service = new UserService()
