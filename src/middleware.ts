@@ -1,13 +1,33 @@
+import { getToken } from 'next-auth/jwt'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export const middleware = (request: NextRequest) => {
-  if(request.nextUrl.pathname === "/"){
-    return NextResponse.redirect(new URL('/inicio', request.url))
+interface Role {
+  id: number,
+  name: string,
+  isActive: boolean,
+  createdAt: string
+}
+
+export const middleware = async (req: NextRequest) => {
+  if(req.nextUrl.pathname === '/'){
+    return NextResponse.redirect(new URL('/inicio', req.url))
   }
-  if(request.nextUrl.pathname === "/super-admin"){
-    // TODO: validar que es super-administrador
-    return NextResponse.redirect(new URL('/inicio', request.url))
+  if(req.nextUrl.pathname === '/admin'){
+    const session = await getToken({req, secret: process.env.NEXTAUTH_SECRET})
+
+    if(!session) return NextResponse.redirect(new URL('/api/auth/signin', req.url));
+
+    const { role } = session?.user as { role: Role }
+    const { name: roleName } = role
+
+    if( roleName !== 'admin' && roleName !== 'super-admin' ) {
+      return NextResponse.redirect(new URL('/api/auth/signin', req.url));
+    }
+    
+    if(roleName === 'super-admin'){
+      return NextResponse.rewrite(new URL('/super-admin', req.url));
+    }
   }
   return;
 }

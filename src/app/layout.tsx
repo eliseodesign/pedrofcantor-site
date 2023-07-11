@@ -11,12 +11,14 @@ import NavBar from '@/shared/components/NavBar'
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
-function RootLayout({children}: Childs) {
+function RootLayout({ children }: Childs) {
   return (
     <html lang="en">
       <body className={inter.className}>
         <NavBar />
-        {children}
+        <main className='container-app'>
+          {children}
+        </main>
       </body>
     </html>
   )

@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@markdoc/markdoc": "^0.3.0",
     "@markdoc/next.js": "^0.2.2",
-    "@types/node": "20.3.3",
+    "@prisma/client": "^4.16.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "dotenv": "^16.3.1",
@@ -22,11 +22,18 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sqlite3": "^5.1.6",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/markdown-it": "^12.2.3",
+    "@types/node": "^20.4.1",
     "@types/sqlite3": "^3.1.8",
-    "sass": "^1.63.6"
+    "prisma": "^4.16.2",
+    "sass": "^1.63.6",
+    "ts-node": "^10.9.1"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }

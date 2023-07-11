@@ -29,18 +29,13 @@
           }
       }
   }
-
-      
+ 
 }
-
-// IMPORTAMOS EL MENU HAMBURGESA 
-// @import './libs/menuAndDark';
 
 body.darkmode .nav .nav__container .nav__logo{
   color:var(--color-i);
   opacity: 1;
 }
-
 
 .nav__menu{
   display: flex;
@@ -51,8 +46,7 @@ body.darkmode .nav .nav__container .nav__logo{
   gap: 2em;
   color: var(--text);
 }
-// #actual-item{
-//     text-shadow: rgba(0, 0, 0, 0) 0px 0px 5px, rgba(0, 0, 0, 0.555) 0px 0px 10px, rgba(0, 0, 0, 0.623) 0px 0px 15px, #0b135e 0px 0px 20px /*, #1a3e44 0px 0px 30px, #0c0a63 0px 0px 40px, #330b3d 0px 0px 50px, #062930 0px 0px 75px*/;
+
 //     }
 .nav__item{
   font-size:15.5px ;
@@ -65,18 +59,16 @@ body.darkmode .nav .nav__container .nav__logo{
 }
 
 
-
-
 /*EFeCTO///////////////////////////////////*/
 .nav__item::after{
- content: "";
- display: block;
-background-color: #0000007e;
-width: 100%;
-margin-top: 3px;
-height: 1.5px;
-clip-path: var(--clippy);
-transition: clip-path .06s ;
+  content: "";
+  display: block;
+  background-color: #0000007e;
+  width: 100%;
+  margin-top: 3px;
+  height: 1.5px;
+  clip-path: var(--clippy);
+  transition: clip-path .06s ;
 }
 
 .nav__item:hover{
@@ -98,12 +90,9 @@ transition: clip-path .06s ;
       min-height: 100vh;
       width: 85vw;
       left: 15%;
-      // right: 0;
-      // bottom: 0;
       background:#e4e4e4;
       backdrop-filter: blur(6px);
 
-  
 
       justify-content: center;
       flex-direction: column;
@@ -129,18 +118,14 @@ transition: clip-path .06s ;
               }   
   }
           
-
   }
 
   .cbdark{
       display: flex;
-      justify-content:start;
+      justify-content:flex-start;
       // grid-area: dark;
      
   }
-
-
-
 
   /*!DARK MODE ESTILS*/
   body.darkmode .nav__menu {
@@ -148,9 +133,6 @@ transition: clip-path .06s ;
 
       backdrop-filter: blur(1px);
       -webkit-backdrop-filter: blur(1px);
-
-
-
   }
 }
 
@@ -161,13 +143,9 @@ body.darkmode .nav__item {
   opacity: 1;
 }
 
-
-
 .despliege {
   clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%);
-
 }
-
 
 body.darkmode .nav__item::after {
   background: rgba(255, 255, 255, 0.473);
@@ -178,6 +156,5 @@ body.darkmode .nav{
   border: none;
   border-bottom: 1px solid #101a24;
   box-shadow:  .1px .1px 100px #ffffff4b;
-
 }
 
