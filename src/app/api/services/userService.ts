@@ -1,33 +1,24 @@
 import { UserType } from '@/app/api/schemas'
 import { prisma } from '@/lib/prisma'
-import { RetunService, User } from '@/shared/interfaces'
+import { ReturnService, returnProvider } from '@/app/api/handlers'
+import { User } from '@/shared/interfaces'
 
 export class AdminService {
 
-  /**create user recibe al user(data) y el */
-  async create(data:UserType, rol: string): Promise<RetunService<User | null>>{
-    const queryRol = await prisma.role.findUnique({
-      where:{ name: rol}
-    })
+  /**create user recibe al user(data) y el rol*/
+  async create(data:UserType, rol: string): Promise<ReturnService<User | null>>{
+    
+    const queryRol = await prisma.role.findUnique({ where:{ name: rol } })
+    if(!queryRol) return returnProvider(null,'No existe', false)
+    
+    const queryUsername = await prisma.user.findUnique({ where: { username: data.username } })
 
-    if(!queryRol){
-      return Promise.resolve({
-        data:null,
-        message: 'No existe rol',
-        success: false
-      })
-    }
+    if(queryUsername) return returnProvider(null, 'Ya existe', false)
+    
+    data.roleId = queryRol.id
+    const user = await prisma.user.create({ data })
 
-    data.id = queryRol.id
-    const user = await prisma.user.create({
-      data
-    })
-
-    return Promise.resolve({
-      data : user,
-      message: 'usuario creado con exito',
-      success: true
-    })
+    return returnProvider(user, 'usuario creado', true)
   }
 
   async delete(id: number) {
