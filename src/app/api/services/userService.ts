@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { ReturnService, returnProvider } from '@/app/api/handlers'
 import { User } from '@/shared/interfaces'
 
-export class AdminService {
+export class UserService {
 
   /**create user recibe al user(data) y el rol*/
   async create(data:UserType, rol: string): Promise<ReturnService<User | null>>{
@@ -22,7 +22,13 @@ export class AdminService {
   }
 
   async delete(id: number) {
+    const user = await prisma.user.findUnique({ where: { id: id }, include: { role: true }})
+    if(!user) return returnProvider(null, 'No existe usuario', false)
+    if(user.role.name === 'super-admin') return returnProvider(null, 'No puedes eliminar este usuario', false)
 
+    const deleted = await prisma.user.delete({ where: { id }})
+    
+    return returnProvider(deleted, 'usuario eliminano', true)
   }
   
   async getAll(){

@@ -1,20 +1,21 @@
 import { handleError, ResponseProvider } from '@/app/api/handlers'
 import { createUser, deleteUser } from '@/app/api/schemas'
-import { UserService } from '../../services/userService'
+import { UserService } from '@/app/api/services/userService'
 
 const service = new UserService()
-// POST
-export async function POST(req: Request) {
+// DELETE
+export async function DELETE(req: Request,
+  { params }: { params: { id: string } }) {
   try {
-    const requestData = await req.json(); //parsear a json
-    createUser.parse(requestData); // validation
+    const id = Number(params.id)
+    deleteUser.parse({id})
 
-    const result = await service.create(requestData, 'admin'); // crear
+    const result = await service.delete(id)
     const { data, message, success } = result
     
     if (!success) return ResponseProvider(400, message, null); 
   
-    return ResponseProvider(201, message, data);
+    return ResponseProvider(201, message, data);    
   } catch (error) {
     return handleError(error)
   }
