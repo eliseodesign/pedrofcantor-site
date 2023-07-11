@@ -12,9 +12,9 @@ datasource db {
 
 model User {
   id        Int      @id @default(autoincrement())
-  fullName  String 
+  fullName  String
   username  String   @unique
-  password  String   // Hash
+  password  String // Hash
   createdAt DateTime @default(now())
   isActive  Boolean  @default(true)
   roleId    Int
@@ -22,11 +22,17 @@ model User {
 }
 
 model Role {
-  id       Int        @id @default(autoincrement())
-  name     String     @unique
-  isActive Boolean    @default(true)
-  createdAt DateTime  @default(now())
-  users    User[]
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  users     User[]
 }
 
-
+model Articulo {
+  id          Int      @id @default(autoincrement())
+  shortname   String   @unique
+  title       String
+  description String
+  date        DateTime @default(now())
+}
