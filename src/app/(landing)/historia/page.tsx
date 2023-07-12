@@ -1,6 +1,6 @@
 import { getSEO } from '@/shared/seoData'
 
-export const metadata = getSEO("HISTORIA")
+export const metadata = getSEO('HISTORIA')
 
 function Historia() {
   return (

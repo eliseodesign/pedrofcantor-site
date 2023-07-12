@@ -10,7 +10,7 @@ export class ArticuloService {
     const exist = await prisma.articulo.findUnique({ where: { shortname: data.shortname }})
 
     if(exist) return returnProvider(null, 'Ya existe', false)
-    console.log("DATA",data)
+    console.log('DATA',data)
 
     const articulo = await prisma.articulo.create({ data })
     if(!articulo) return returnProvider(null, 'Error del servidor', false)
