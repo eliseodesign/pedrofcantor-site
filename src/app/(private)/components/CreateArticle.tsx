@@ -41,6 +41,17 @@ function CreateArticle() {
     const response = await result.json()
     console.log(response)
   }
+
+  const handleContent = ({ text }: { text: string }) => {
+    console.log(detail.data.content)
+    setDetail((prevState)=> ({
+      ...prevState,
+      data:{
+        ...prevState.data,
+        content:text
+      }
+    }))
+  }
   return (
     <div>
       <FormDetail 
@@ -50,7 +61,7 @@ function CreateArticle() {
         handleInput={handleInput}
         handleSubmit={handleSubmit}
       />
-      <MarkdownEditor handleChange={()=>console.log("first")}/>
+      <MarkdownEditor handleContent={handleContent}/>
     </div>
   )
 }
