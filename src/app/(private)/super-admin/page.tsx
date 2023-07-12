@@ -1,5 +1,5 @@
 'use client'
-import { MarkdownEditor } from '../components/MarkdownEditor'
+import CreateArticle from '../components/CreateArticle'
 import { useSession } from 'next-auth/react'
 
 function Admin() {
@@ -8,7 +8,7 @@ function Admin() {
   console.log(session, status)
   return (
     <div>
-      <MarkdownEditor />
+      <CreateArticle />
     </div>
   )
 }

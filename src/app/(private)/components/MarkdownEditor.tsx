@@ -10,14 +10,13 @@ import './index.scss'
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 // Finish!
-function handleEditorChange({ html, text }: {html:any, text: string}) {
+function handleEditorChange({ html, text }: {html:string, text: string}) {
   console.log('handleEditorChange', html, text);
 }
-export const MarkdownEditor = () => {
+export const MarkdownEditor = ({handleChange}:{handleChange:Function}) => {
   return (
-    <div >
-      <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
+    <div>
+      <MdEditor style={{ height: '70vh' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
     </div>
-
   );
 };
