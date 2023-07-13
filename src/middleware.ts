@@ -1,5 +1,6 @@
 import { getToken } from 'next-auth/jwt'
 import { NextResponse } from 'next/server'
+import { ResponseProvider } from '@/app/api/handlers'
 import type { NextRequest } from 'next/server'
 
 interface Role {
@@ -28,6 +29,19 @@ export const middleware = async (req: NextRequest) => {
     if(roleName === 'super-admin'){
       return NextResponse.rewrite(new URL('/super-admin', req.url));
     }
+  }
+  if(req.nextUrl.pathname === '/api/articulo'){
+    try{
+      const session = await getToken({req, secret: process.env.NEXTAUTH_SECRET})
+      const { role } = session?.user as { role: Role }
+      const { name: roleName } = role
+      if( roleName !== 'admin' && roleName !== 'super-admin' ) {
+        throw new Error('No esta autorizado')
+      }
+    } catch(error){
+      return ResponseProvider(401, String(error), null)
+    }
+    
   }
   return;
 }
