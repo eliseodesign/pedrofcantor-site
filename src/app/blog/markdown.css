@@ -1,5 +1,5 @@
 .markdown-container *::selection{
-  background-color: #40b950;
+  background-color: var(--primary);
 }
 
 .markdown-container a[href]:after {
