@@ -5,7 +5,7 @@ const path = require('path')
 
 const markdocConfig = {
   mode: 'static',
-  schemaPath:"./src/pages"
+  schemaPath:'./src/app/blog'
 }
 module.exports = withMarkdoc(markdocConfig)(
   {
