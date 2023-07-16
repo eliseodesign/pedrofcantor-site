@@ -4,7 +4,7 @@ interface Props {
 }
 
 
-function RootLayout({children}: Props) {
+function PrivateLayout({children}: Props) {
   return (
     <section>
       <h1>Panel</h1>
@@ -15,4 +15,4 @@ function RootLayout({children}: Props) {
   )
 }
 
-export default RootLayout;
+export default PrivateLayout;
