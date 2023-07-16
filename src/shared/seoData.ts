@@ -9,7 +9,7 @@ interface SEO {
 
 type RouteKey = keyof RoutesConstants;
 
-// Definición de las rutas y sus metadatos de SEO
+/** @description Definición de las rutas y sus metadatos de SEO */
 const seoByRoute: Record<RouteKey, SEO> = {
     INICIO: {
       title: `${inmutableConstants.NOMBRE} web site`,
@@ -55,7 +55,7 @@ const seoByRoute: Record<RouteKey, SEO> = {
     
 };
 
-// Función para obtener los metadatos de SEO de una ruta específica
+/**@description Función para obtener los metadatos de SEO de una ruta específica */
 export function getSEO(route: RouteKey): SEO | undefined {
     return seoByRoute[route];
 }
