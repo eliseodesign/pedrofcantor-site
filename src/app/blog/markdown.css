@@ -1,7 +1,3 @@
-.markdown-container *::selection{
-  background-color: var(--primary);
-}
-
 .markdown-container a[href]:after {
   content: " (" attr(href) ")";
 }
@@ -183,7 +179,7 @@
 /* Estilos para h1 */
 .markdown-container h1 {
   padding: 0rem 0 !important;
-  color: #2980b9;
+  color: var(--primary);
   font-weight: bold;
 }
 
@@ -210,7 +206,7 @@
 /* Estilos para a, a:visited */
 .markdown-container a,
 .markdown-container a:visited {
-  color: #2980b9;
+  color:var(--primary);
   font-weight: bold;
   text-decoration: none;
 }
@@ -219,7 +215,7 @@
 .markdown-container a:hover,
 .markdown-container a:focus,
 .markdown-container a:active {
-  color: #164c70;
+  color: var(--primary);
 }
 
 .markdown-container pre {
