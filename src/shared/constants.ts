@@ -1,3 +1,4 @@
+/**Constantes compartidas */
 interface Constants {
   readonly SIGLAS: string;
   readonly NOMBRE: string;

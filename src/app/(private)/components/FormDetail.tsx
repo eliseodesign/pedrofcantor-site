@@ -4,11 +4,12 @@ interface Props {
   shortname: string
   title: string
   description: string
+  image: string | number | readonly string[] | undefined
   handleInput: (event: ChangeEvent<HTMLInputElement>) => void,
   handleSubmit: (event: FormEvent<HTMLFormElement>) => void
 }
 
-function FormDetail({ shortname, title, description, handleInput, handleSubmit} : Props) {
+function FormDetail({ shortname, title, description, handleInput, handleSubmit, image} : Props) {
 
   return (
     <form onSubmit={handleSubmit}>
@@ -32,6 +33,12 @@ function FormDetail({ shortname, title, description, handleInput, handleSubmit} 
         placeholder="Descripcion"
         value={description}
         onChange={handleInput}
+      />
+      <input type="file" 
+        name='imageArticle'
+        placeholder='Subir una imagen'
+        onChange={handleInput}
+
       />
       {/* <input type="file" name="file" placeholder='file' /> */}
       <button type="submit">Crear Articulo</button>
