@@ -6,6 +6,7 @@ interface Detail {
   title: string
   description: string
   content: string
+  image: any
 }
 
 function CreateArticle() {
@@ -13,35 +14,71 @@ function CreateArticle() {
     shortname: '',
     title: '',
     description: '',
-    content: '# prueba'
+    content: '# prueba',
+    image: undefined
   }
 
   const [detail, setDetail] = useObjectState<Detail>(initialDetail)
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.name === 'imageArticle') {
+      // Almacenar el archivo seleccionado en el estado
+      const selectedFile = event.target.files?.[0];
+      console.log('FILE', selectedFile)
+
+      if (selectedFile && selectedFile instanceof File && isImageFile(selectedFile)) {
+        // Comprobar que selectedFile es una instancia de File y es una imagen
+        setDetail((prevState) => ({
+          ...prevState,
+          data: {
+            ...prevState.data,
+            image: selectedFile
+          }
+        }));
+      } else {
+        console.log('no es un imagen')
+      }
+      return
+    } 
     setDetail((prevState) => ({
       ...prevState,
-      data: {
+      data:{
         ...prevState.data,
         [event.target.name]: event.target.value,
-      },
+      }
     }));
+      
+    };
+
+  const isImageFile = (file: File): boolean => {
+    return file.type.startsWith('image/');
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(detail.data)
-    const form = new FormData()
-    form.set('detail', JSON.stringify(detail.data));
 
-    const result = await fetch('api/articulo', {
-      method: 'POST',
-      body: JSON.stringify(detail.data)
-    })
-    const response = await result.json()
-    console.log(response)
-  }
+    // Crear un objeto FormData y agregar los datos necesarios
+    const formData = new FormData();
+    formData.append('shortname', detail.data.shortname);
+    formData.append('title', detail.data.title);
+    formData.append('description', detail.data.description);
+    formData.append('content', detail.data.content);
+    formData.append('imageArticle', detail.data.image as unknown as File); // Agregar el archivo al FormData
 
+    try {
+      // Enviar los datos al servidor utilizando fetch y FormData
+      const result = await fetch('api/articulo', {
+        method: 'POST',
+        body: formData,
+      });
+      const response = await result.json();
+      console.log(response);
+    } catch (error) {
+      console.error('Error al enviar el formulario', error);
+    }
+  };
+
+  // ... Otro código ...
   const handleContent = ({ text }: { text: string }) => {
     console.log(detail.data.content)
     setDetail((prevState)=> ({
@@ -58,6 +95,7 @@ function CreateArticle() {
         shortname={detail.data.shortname}
         title={detail.data.title}
         description={detail.data.description}
+        image={detail.data.image}
         handleInput={handleInput}
         handleSubmit={handleSubmit}
       />
