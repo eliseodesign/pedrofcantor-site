@@ -33,4 +33,5 @@ model Articulo {
   description String
   date        DateTime @default(now())
   content     String
+  urlImage    String 
 }
