@@ -36,6 +36,7 @@ function CreateArticle() {
           }
         }));
       } else {
+        // todo: mostrar al usuario
         console.log('no es un imagen')
       }
       return
@@ -74,13 +75,12 @@ function CreateArticle() {
       const response = await result.json();
       console.log(response);
     } catch (error) {
+      // todo: mostrar a usuario
       console.error('Error al enviar el formulario', error);
     }
   };
 
-  // ... Otro código ...
   const handleContent = ({ text }: { text: string }) => {
-    console.log(detail.data.content)
     setDetail((prevState)=> ({
       ...prevState,
       data:{

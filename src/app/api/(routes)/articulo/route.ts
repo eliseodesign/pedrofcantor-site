@@ -11,19 +11,21 @@ export async function POST(req:Request, res:Response) {
   try {
     const reqData = await req.formData()
 
-    const imageFile = reqData?.get('imageArticle');
+    const imageFile = reqData?.get('imageArticle'); // obtener la imagen
 
+    // validar que exista y sea blob
     if (!imageFile || !(imageFile instanceof Blob))  return ResponseProvider(400, 'Imagen invalida', null)
     
   
     // Verificar si el archivo es una imagen antes de guardarla
     const imageBuffer = Buffer.from(await imageFile.arrayBuffer());
-    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif']; // Agrega más tipos MIME si lo deseas
-  
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jfif', 'image/webp'];
     if (!validImageTypes.includes(imageFile.type)) {
-      return NextResponse.json({ error: 'El archivo proporcionado no es una imagen válida.' }, { status: 400 });
+      return ResponseProvider(400,  'El archivo proporcionado no es una imagen válida.', null)
+      
     }
 
+    // url de la imagen para guardarla y para el articulo en la bd
     const urlImage = String(reqData?.get('shortname') + '.' +  imageFile.name.split('.').slice(-1)[0]);
     const articulo = {
       shortname: String(reqData?.get('shortname')),
@@ -33,15 +35,14 @@ export async function POST(req:Request, res:Response) {
       urlImage
     }
 
-    console.log(articulo)
+    createArticulo.parse(articulo) // verificar tipos
     
-    createArticulo.parse(articulo)
-    
-    const result = await service.create(articulo)
+    const result = await service.create(articulo) // crear articulo
     const { data, message, success } = result
 
     if(!success) return ResponseProvider(400, message, null); 
 
+    // crear articulo
     const filePath = path.join(process.cwd(), 'public', articulo.urlImage);
     fs.writeFileSync(filePath, imageBuffer);
     return ResponseProvider(201, message, data)
