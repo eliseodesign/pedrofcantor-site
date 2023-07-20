@@ -24,8 +24,6 @@ export const formatDate = (date: string | Date): string => {
   const dia = fechaOriginal.getDate();
   const mes = meses[fechaOriginal.getMonth()];
   const anio = fechaOriginal.getFullYear();
-  const hora = fechaOriginal.getHours();
-  const minuto = fechaOriginal.getMinutes();
   
-  return `${diaSemana}, ${dia} de ${mes} de ${anio} ${hora}:${minuto}`;
+  return `${diaSemana}, ${dia} de ${mes} de ${anio}`;
 }
