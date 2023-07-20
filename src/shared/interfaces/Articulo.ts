@@ -3,7 +3,7 @@ export interface Articulo {
   shortname: string, 
   title: string
   description: string
-  date: Date,
+  date: Date | string,
   /**Contenido markdown */
   content: string
 } 
