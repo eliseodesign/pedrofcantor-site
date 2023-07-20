@@ -1,12 +1,14 @@
 import { prisma } from '@/lib/prisma'
+import z from 'zod'
 import { Articulo } from '@/shared/interfaces'
 import { ReturnService, returnProvider } from '@/app/api/handlers'
-import { ArticuloType } from '@/app/api/schemas'
+import { createArticulo} from '@/app/api/schemas'
 import { createMarkdownFile} from '@/app/api/handlers/Markdown'
 
 
 export class ArticuloService {
-  async create(data: ArticuloType): Promise<ReturnService<Articulo | null>>{
+  async create(data: z.infer<typeof createArticulo>): Promise<ReturnService<Articulo | null>>{
+    
     const exist = await prisma.articulo.findUnique({ where: { shortname: data.shortname }})
 
     if(exist) return returnProvider(null, 'Ya existe', false)
