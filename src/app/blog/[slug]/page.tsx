@@ -1,12 +1,14 @@
 import { glob } from 'glob';
 import path from 'path';
 import fs from 'fs';
+import { prisma } from '@/lib/prisma'
 import Markdoc from '@markdoc/markdoc';
 import React from 'react';
 import TableOfContents from '../(blog.components)/table.of.contents';
 import matter from 'gray-matter';
 import { Metadata } from 'next';
 import { components, config } from '../config.markdoc';
+import Image from 'next/image'
 import '../markdown.css'
 
 const ARTICLES_PATH = 'src/app/blog/(articles)';
@@ -71,8 +73,17 @@ export default async function BlogPost({ params }: PageProps) {
     const { content } = await getMarkdownContent(params.slug);
     const tableOfContents = extractHeadings(content);
 
+    const articulo = await prisma.articulo.findUnique({ 
+        where: {
+            shortname: params.slug
+        }
+    })
+
     return (
         <div className='markdown-container'>
+            {
+                articulo && <Image width={500} height={500} src={`/${articulo!.urlImage}`} alt={`image ${articulo?.title}`}/>
+            }
             <TableOfContents tableOfContents={tableOfContents} />
             {Markdoc.renderers.react(content, React, { components })}
         </div>

@@ -1,9 +1,12 @@
-import React from 'react'
+import { getArticles } from './services'
 
 const Blog = () => {
+  const articulos = getArticles()
   return (
     <div>
-      lista de blogs
+      {
+        JSON.stringify(articulos)
+      }
     </div>
   )
 }
