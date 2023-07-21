@@ -1,4 +1,7 @@
 import { FormDetail, MarkdownEditor } from './'
+import { useEvents } from '@/shared/hooks/useEvents'
+import toast, { Toaster } from 'react-hot-toast'
+
 import { useObjectState } from '@/shared/hooks/useObjetState'
 
 interface Detail {
@@ -40,40 +43,65 @@ function CreateArticle() {
         console.log('no es un imagen')
       }
       return
-    } 
-    setDetail((prevState) => ({
-      ...prevState,
-      data:{
-        ...prevState.data,
-        [event.target.name]: event.target.value,
-      }
-    }));
-      
+    }
+    if (event.target.name === 'shortname') {
+      let value = event.target.value.replace(/ /g, '-').replace(/\./g, '')
+      setDetail((prevState) => ({
+        ...prevState,
+        data: {
+          ...prevState.data,
+          shortname: value
+        }
+      }));
+    } else {
+      setDetail((prevState) => ({
+        ...prevState,
+        data: {
+          ...prevState.data,
+          [event.target.name]: event.target.value,
+        }
+      }));
+
     };
+  }
 
   const isImageFile = (file: File): boolean => {
     return file.type.startsWith('image/');
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    // Crear un objeto FormData y agregar los datos necesarios
-    const formData = new FormData();
-    formData.append('shortname', detail.data.shortname);
-    formData.append('title', detail.data.title);
-    formData.append('description', detail.data.description);
-    formData.append('content', detail.data.content);
-    formData.append('imageArticle', detail.data.image as unknown as File); // Agregar el archivo al FormData
-
     try {
+      event.preventDefault();
+
+      const { content, description, image, shortname, title } = detail.data
+      if (shortname === '' || title === '' || description === '' || content === '') {
+        toast.error('Debe llenar todos los campos')
+        return
+      }
+    
+      if (shortname.length < 5 || !/^[a-zA-Z0-9-]+$/.test(shortname)) {
+        toast.error('URL muy corta o con caracteres invalidos')
+        return
+      }
+    
+
+      // Crear un objeto FormData y agregar los datos necesarios
+      const formData = new FormData();
+      formData.append('shortname', shortname);
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('content', content);
+      formData.append('imageArticle', image as unknown as File); // Agregar el archivo al FormData
+
       // Enviar los datos al servidor utilizando fetch y FormData
       const result = await fetch('api/articulo', {
         method: 'POST',
         body: formData,
       });
       const response = await result.json();
-      console.log(response);
+      if(response.code !== 201){
+        toast.error(response.msg)
+      }
     } catch (error) {
       // todo: mostrar a usuario
       console.error('Error al enviar el formulario', error);
@@ -81,24 +109,28 @@ function CreateArticle() {
   };
 
   const handleContent = ({ text }: { text: string }) => {
-    setDetail((prevState)=> ({
+    setDetail((prevState) => ({
       ...prevState,
-      data:{
+      data: {
         ...prevState.data,
-        content:text
+        content: text
       }
     }))
   }
   return (
     <div>
-      <FormDetail 
+      <FormDetail
         shortname={detail.data.shortname}
         title={detail.data.title}
         description={detail.data.description}
         handleInput={handleInput}
         handleSubmit={handleSubmit}
       />
-      <MarkdownEditor handleContent={handleContent}/>
+      <MarkdownEditor handleContent={handleContent} />
+      <Toaster
+        position="top-right"
+        reverseOrder={true}
+      />
     </div>
   )
 }
