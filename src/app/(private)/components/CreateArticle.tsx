@@ -1,5 +1,4 @@
 import { FormDetail, MarkdownEditor } from './'
-import { useEvents } from '@/shared/hooks/useEvents'
 import toast, { Toaster } from 'react-hot-toast'
 
 import { useObjectState } from '@/shared/hooks/useObjetState'
