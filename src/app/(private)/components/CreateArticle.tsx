@@ -95,7 +95,6 @@ function CreateArticle() {
         shortname={detail.data.shortname}
         title={detail.data.title}
         description={detail.data.description}
-        image={detail.data.image}
         handleInput={handleInput}
         handleSubmit={handleSubmit}
       />

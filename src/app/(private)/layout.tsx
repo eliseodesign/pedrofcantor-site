@@ -7,7 +7,7 @@ interface Props {
 function PrivateLayout({children}: Props) {
   return (
     <section>
-      <h1>Panel</h1>
+      <h1 className='px-4 pt-4 text-xl text-primary'>Panel De Administración</h1>
       <SessionProvider>
         {children}
       </SessionProvider>
