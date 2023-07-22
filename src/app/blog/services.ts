@@ -5,7 +5,7 @@ import matter from 'gray-matter';
 import path from 'path'
 
 
-const ARTICLES_PATH = 'src/app/blog/(articles)';
+const ARTICLES_PATH = 'src/app/blog/\(articles\)';
 const POSTS_DIR = path.join(process.cwd(), ARTICLES_PATH);
 
 export const getArticles = (): Articulo[] => { 
