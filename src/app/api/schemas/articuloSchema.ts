@@ -6,6 +6,7 @@ const title = z.string().nonempty();
 const description = z.string().nonempty().min(6); 
 const date = z.date();
 const content = z.string().nonempty()
+const urlImage = z.string().nonempty()
 
 export const getArticulo = z.object({
   id : articuloId,
@@ -15,7 +16,8 @@ export const createArticulo = z.object({
   shortname: shortname,
   title: title,
   description: description,
-  content
+  content,
+  urlImage
 }).strict()
 
 export const deleteArticulo = z.object({
@@ -29,7 +31,3 @@ export const updateArticulo = z.object({
   date: date.optional(),
   content: content.optional()
 })
-
-const ArticuloSchema = createArticulo.merge(getArticulo)
-
-export type ArticuloType = z.infer<typeof ArticuloSchema>

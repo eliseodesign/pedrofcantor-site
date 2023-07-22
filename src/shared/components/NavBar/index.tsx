@@ -1,9 +1,9 @@
-"use client"
+'use client'
 import { Luxurious_Script } from 'next/font/google'
 const luxurious = Luxurious_Script({ weight: '400', subsets: ['latin', 'latin-ext', 'vietnamese'] })
 
-import Links from "./Links";
-import { useState } from "react";
+import Links from './Links';
+import { useState } from 'react';
 import './scss/index.scss';
 
 function NavBar() {
@@ -43,7 +43,7 @@ function NavBar() {
 
       </nav>
       <div
-        className={`modal_menu ${isMenuOpen ? "display-block" : ""}`}
+        className={`modal_menu ${isMenuOpen ? 'display-block' : ''}`}
         onClick={closeMenu}
       >
       </div>
