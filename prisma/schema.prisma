@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -33,4 +33,5 @@ model Articulo {
   description String
   date        DateTime @default(now())
   content     String
+  urlImage    String 
 }

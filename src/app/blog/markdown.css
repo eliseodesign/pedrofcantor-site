@@ -1,0 +1,235 @@
+.markdown-container a[href]:after {
+  content: " (" attr(href) ")";
+}
+
+.markdown-container abbr[title]:after {
+  content: " (" attr(title) ")";
+}
+
+.markdown-container a[href^="#"]:after,
+.markdown-container a[href^="javascript:"]:after {
+  content: "";
+}
+
+.markdown-container pre,
+.markdown-container blockquote {
+  background: rgba(90, 83, 83, 0.192);
+  padding: 10px 1em 10px 1em;
+  page-break-inside: avoid;
+}
+
+.markdown-container thead {
+  display: table-header-group;
+}
+
+.markdown-container tr,
+.markdown-container img {
+  page-break-inside: avoid;
+}
+
+.markdown-container img {
+  max-width: 100% !important;
+}
+
+.markdown-container p,
+.markdown-container h2,
+.markdown-container h3 {
+  orphans: 3;
+  widows: 3;
+}
+
+.markdown-container h2,
+.markdown-container h3 {
+  page-break-after: avoid;
+}
+
+/* Estilos para html */
+.markdown-container html {
+  font-size: 12px;
+}
+
+@media screen and (min-width: 32rem) and (max-width: 48rem) {
+  .markdown-container html {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 48rem) {
+  .markdown-container html {
+    font-size: 16px;
+  }
+}
+
+/* Estilos para body */
+.markdown-container body {
+  line-height: 1.85;
+}
+
+/* Estilos para p y .splendor-p */
+.markdown-container p,
+.markdown-container .splendor-p {
+  font-size: 1rem;
+  margin-bottom: 1.3rem;
+}
+
+/* Estilos para h1, .splendor-h1, h2, .splendor-h2, h3, .splendor-h3, h4, .splendor-h4 */
+.markdown-container h1,
+.markdown-container .splendor-h1,
+.markdown-container h2,
+.markdown-container .splendor-h2,
+.markdown-container h3,
+.markdown-container .splendor-h3,
+.markdown-container h4,
+.markdown-container .splendor-h4 {
+  /* margin: 1.414rem 0 .5rem; */
+  font-weight: inherit;
+  line-height: 1.42;
+}
+
+.markdown-container h1,
+.markdown-container .splendor-h1 {
+  margin-top: 0;
+  font-size: 3rem;
+}
+
+
+.markdown-container h3,
+.markdown-container .splendor-h3 {
+  font-size: 1.999rem;
+}
+
+.markdown-container h4,
+.markdown-container .splendor-h4 {
+  font-size: 1.414rem;
+}
+
+/* Estilos para h5 y .splendor-h5 */
+.markdown-container h5,
+.markdown-container .splendor-h5 {
+  font-size: 1.121rem;
+}
+
+/* Estilos para h6 y .splendor-h6 */
+.markdown-container h6,
+.markdown-container .splendor-h6 {
+  font-size: .88rem;
+}
+
+/* Estilos para small y .splendor-small */
+.markdown-container small,
+.markdown-container .splendor-small {
+  font-size: .707em;
+}
+
+/* Estilos para img, canvas, iframe, video, svg, select, textarea */
+.markdown-container img,
+.markdown-container canvas,
+.markdown-container iframe,
+.markdown-container video,
+.markdown-container svg,
+.markdown-container select,
+.markdown-container textarea {
+  max-width: 100%;
+}
+
+/* Estilos para html */
+.markdown-container html {
+  font-size: 18px;
+  max-width: 100%;
+}
+
+/* Estilos para body */
+.markdown-container body {
+  font-family: 'Merriweather', Georgia, serif;
+  margin: 0;
+  max-width: 100%;
+}
+
+/* Estilos para p, *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) */
+.markdown-container p,
+.markdown-container *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
+  margin: 1rem auto 1rem;
+  max-width: 36rem;
+  padding: .25rem;
+}
+
+/* Estilos para div */
+.markdown-container div {
+  width: 100%;
+}
+
+/* Estilos para div img */
+.markdown-container div img {
+  width: 100%;
+}
+
+/* Estilos para blockquote p */
+.markdown-container blockquote p {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin: 1rem auto 1rem;
+  max-width: 48rem;
+}
+
+/* Estilos para li */
+.markdown-container li {
+  margin-left: 2rem;
+}
+
+/* Estilos para h1 */
+.markdown-container h1 {
+  padding: 0rem 0 !important;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* Estilos para p */
+.markdown-container p {
+  height: auto;
+  line-height: 1.45;
+}
+
+/* Estilos para pre, code */
+.markdown-container pre,
+.markdown-container code {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+/* Estilos para pre */
+.markdown-container pre {
+  background-color: var(--primary);
+  border-radius: 1em;
+  font-size: .8rem;
+  overflow-x: scroll;
+}
+
+/* Estilos para a, a:visited */
+.markdown-container a,
+.markdown-container a:visited {
+  color:var(--primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Estilos para a:hover, a:focus, a:active */
+.markdown-container a:hover,
+.markdown-container a:focus,
+.markdown-container a:active {
+  color: var(--primary);
+}
+
+.markdown-container pre {
+
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.markdown-container h2,
+.markdown-container .splendor-h2 {
+  font-size: 2.827rem;
+
+}
