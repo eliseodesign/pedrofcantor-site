@@ -1,32 +1,40 @@
-import fs from 'fs'
+import fs from 'fs';
 import { Articulo } from '@/shared/interfaces/Articulo';
-import { formatDate } from '@/shared/handlers/formatDate'
+import { formatDate } from '@/shared/handlers/formatDate';
 import matter from 'gray-matter';
-import path from 'path'
+import { join } from 'path';
+import { fileURLToPath } from 'url';
 
+const ARTICLES_PATH = '(articles)'; // Ruta relativa a la ubicación del archivo actual
 
-const ARTICLES_PATH = 'src/app/blog/\(articles\)';
-const POSTS_DIR = path.join(process.cwd(), ARTICLES_PATH);
+export const getArticles = (): Articulo[] => {
+  const currentFileURL = import.meta.url;
+  const currentFilePath = fileURLToPath(currentFileURL);
+  const currentFileDir = join(currentFilePath, '..');
+  const POSTS_DIR = join(currentFileDir, ARTICLES_PATH);
 
-export const getArticles = (): Articulo[] => { 
-  const articles: Articulo[] = fs.readdirSync(POSTS_DIR).map(file => {
+  const articles: Articulo[] = fs.readdirSync(POSTS_DIR).map(getArticleData);
+  return articles;
+};
 
-    const filePath = path.join(POSTS_DIR, file);
-    const source = fs.readFileSync(filePath, 'utf-8');
-    const matterResult = matter(source);
-    const { title, type , description, date} = matterResult.data;
-    const content = matterResult.content
-    
-    const dateFormated = formatDate(date) 
+const getArticleData = (file: string): Articulo => {
+  const currentFileURL = import.meta.url;
+  const currentFilePath = fileURLToPath(currentFileURL);
+  const currentFileDir = join(currentFilePath, '..');
+  const POSTS_DIR = join(currentFileDir, ARTICLES_PATH);
 
-    return {
-      shortname: file,
-      title,
-      data: title,
-      description,
-      date: dateFormated,
-      content
-    }
-  })
-  return articles
-}
+  const filePath = join(POSTS_DIR, file);
+  const source = fs.readFileSync(filePath, 'utf-8');
+  const matterResult = matter(source);
+  const { title, type, description, date } = matterResult.data;
+  const content = matterResult.content;
+  const dateFormated = formatDate(date);
+
+  return {
+    shortname: file,
+    title,
+    description,
+    date: dateFormated,
+    content,
+  };
+};
