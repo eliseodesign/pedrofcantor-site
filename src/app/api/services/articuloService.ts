@@ -17,7 +17,7 @@ export class ArticuloService {
     const articulo = await prisma.articulo.create({ data })
     if(!articulo) return returnProvider(null, 'Error del servidor', false)
 
-    createMarkdownFile(articulo, `${data.shortname}.md`)
+    // createMarkdownFile(articulo, `${data.shortname}.md`)
     return returnProvider(articulo, `Articulo ${data.shortname} creado`, true)
   }
 }
