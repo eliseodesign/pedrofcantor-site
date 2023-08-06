@@ -33,5 +33,16 @@ model Articulo {
   description String
   date        DateTime @default(now())
   content     String
+  type  String @default("blog")
   urlImage    String 
+  events Evento[]
+}
+
+model Evento {
+  id Int @id @default(autoincrement())
+  date DateTime
+  title String
+  description String
+  articleId Int?
+  article Articulo? @relation(fields: [articleId], references: [id])
 }
